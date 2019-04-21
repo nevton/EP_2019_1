@@ -4,6 +4,17 @@
 # - aluno A: nevton coimbra, nevtoncmrc@al.insper.edu.br
 # - aluno B: paulo vitor barro, paulovab@al.insper.edu.br
 
+
+class player:
+    def __init__(self):
+        self.name = ''
+        self.saude = 100
+        self.ataque = 20
+        self.stats = []
+meujogador = player()
+
+
+
 def carregar_cenarios():
     cenarios = {
         "inicio": {
@@ -19,7 +30,7 @@ def carregar_cenarios():
             "descricao": "Voce chegou ao andar da sala do seu professor",
             "opcoes": {
                 "inicio": "Tomar o elevador para o saguao de entrada",
-                "sala do professor": "entrar na sala do professor"
+                "professor": "falar com o professor"
             }
         },
         "professor": {
@@ -41,7 +52,7 @@ def carregar_cenarios():
     return cenarios, nome_cenario_atual
 
 
-def main():
+def intro():
     print("Na hora do sufoco!")
     print("------------------")
     print()
@@ -52,7 +63,11 @@ def main():
         "na entrada do Insper, e quer procurar o professor para pedir um "
         "adiamento do EP (boa sorte...)")
     print()
+    
+intro()
 
+def main():
+    
     cenarios, nome_cenario_atual = carregar_cenarios()
 
     game_over = False
@@ -69,13 +84,16 @@ def main():
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
+            
 
             print("Escolha sua opção: ")
             print()
-            print("{0}" .format(cenarios["inicio"]["opcoes"]))
+            print('andar professor: Tomar o elevador para o andar do professor')
+            print('biblioteca:  Ir para a biblioteca')
             print()
-            escolha = input("O que você quer fazer? ")
-            if escolha in opcoes:    
+            escolha = input(">> ")
+            
+            if escolha in opcoes:
                 print()
                 print(cenarios[escolha]["titulo"])
                 x = len(cenarios[escolha]["titulo"])               
@@ -86,17 +104,38 @@ def main():
                 if escolha == "biblioteca":
                     print("Escolha sua opção: ")
                     print()
-                    print("voltar: voltar para o saguao")
-                    escolha = input("O que você quer fazer? ")
-                    if escolha in opcoes:
-                        return carregar_cenarios()
+                    print("inicio: voltar para o saguao")
+                    escolha = input(">> ")
+                    if escolha == "inicio":
+                        main()
                     else:
                         print("Sua indecisão foi sua ruína!")
                         game_over = True
                 elif escolha == "andar professor":
                     print("Escolha sua opção: ")
                     print()
+                    print("inicio: voltar para o saguao de entrada")
+                    print("professor: falar com o professor")
                     print()
+                    escolha = input(">> ")
+                    if escolha == "inicio":
+                        main()
+                    elif escolha == "professor":
+                        
+                        print()
+                        print(cenarios[escolha]["titulo"])
+                        x = len(cenarios[escolha]["titulo"])
+                        print("-"*x)
+                        print(cenarios[escolha]["descricao"])
+                        print()
+                        escolha = input("Lutar ou fugir? ")
+                            
+                        
+                    else:
+                        print("Sua indecisão foi sua ruína!")
+                        game_over = True
+                        
+                          
                     
                         
                     
