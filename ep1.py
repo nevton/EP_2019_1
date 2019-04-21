@@ -19,7 +19,7 @@ def carregar_cenarios():
             "descricao": "Voce chegou ao andar da sala do seu professor",
             "opcoes": {
                 "inicio": "Tomar o elevador para o saguao de entrada",
-                "professor": "Falar com o professor"
+                "sala do professor": "entrar na sala do professor"
             }
         },
         "professor": {
@@ -58,7 +58,8 @@ def main():
     game_over = False
     while not game_over:
         cenario_atual = cenarios[nome_cenario_atual]
-
+        
+        print()
         print("Saguao do perigo")
         print("-"*16)
         print("Voce esta no saguao de entrada do insper")
@@ -71,16 +72,43 @@ def main():
 
             print("Escolha sua opção: ")
             print()
-            print("Andar professor: tomar o elevador para o andar do professor")
-            print("Biblioteca: ir para a biblioteca")
+            print("{0}" .format(cenarios["inicio"]["opcoes"]))
             print()
             escolha = input("O que você quer fazer? ")
-
-            if escolha in opcoes:
+            if escolha in opcoes:    
+                print()
+                print(cenarios[escolha]["titulo"])
+                x = len(cenarios[escolha]["titulo"])               
+                print("-"*x)
+                print(cenarios[escolha]["descricao"])
                 nome_cenario_atual = escolha
+                print()
+                if escolha == "biblioteca":
+                    print("Escolha sua opção: ")
+                    print()
+                    print("voltar: voltar para o saguao")
+                    escolha = input("O que você quer fazer? ")
+                    if escolha in opcoes:
+                        return carregar_cenarios()
+                    else:
+                        print("Sua indecisão foi sua ruína!")
+                        game_over = True
+                elif escolha == "andar professor":
+                    print("Escolha sua opção: ")
+                    print()
+                    print()
+                    
+                        
+                    
+                
+                
             else:
                 print("Sua indecisão foi sua ruína!")
                 game_over = True
+                
+                
+            
+            
 
     print("Você morreu!")
 
