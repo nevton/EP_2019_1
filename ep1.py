@@ -1,8 +1,8 @@
 # EP 2019-1: Escape Insper
 #
 # Alunos: 
-# - aluno A: Fulano da Silva, fulanos@insper.edu.br
-# - aluno B: Sicrano de Almeida, sicranoa1@insper.edu.br
+# - aluno A: nevton coimbra, nevtoncmrc@al.insper.edu.br
+# - aluno B: paulo vitor barro, paulovab@al.insper.edu.br
 
 def carregar_cenarios():
     cenarios = {
@@ -59,8 +59,9 @@ def main():
     while not game_over:
         cenario_atual = cenarios[nome_cenario_atual]
 
-        # Aluno A: substitua este comentário pelo código para imprimir 
-        # o cenário atual.
+        print("Saguao do perigo")
+        print("-"*16)
+        print("Voce esta no saguao de entrada do insper")
 
         opcoes = cenario_atual['opcoes']
         if len(opcoes) == 0:
