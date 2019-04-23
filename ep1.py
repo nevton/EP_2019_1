@@ -42,7 +42,7 @@ def carregar_cenarios():
         },
         "biblioteca": {
             "titulo": "Caverna da tranquilidade",
-            "descricao": "Voce esta na biblioteca",
+            "descricao": "Voce encontrou uma espada +30 de dano",
             "opcoes": {
                 "inicio": "Voltar para o saguao de entrada"
             }
@@ -50,6 +50,15 @@ def carregar_cenarios():
     }
     nome_cenario_atual = "inicio"
     return cenarios, nome_cenario_atual
+carregar_cenarios()
+
+def carregar_inventario():
+    inventario = {"vazio": "seu inventorio esta vazio"}
+    inventario_atual = "vazio"
+    return inventario, inventario_atual
+
+carregar_inventario()
+
 
 
 def intro():
@@ -69,6 +78,7 @@ intro()
 def main():
     
     cenarios, nome_cenario_atual = carregar_cenarios()
+    inventario, inventario_atual = carregar_inventario()
 
     game_over = False
     while not game_over:
@@ -102,6 +112,7 @@ def main():
                 nome_cenario_atual = escolha
                 print()
                 if escolha == "biblioteca":
+                    inventario["espada"] = "+30 de dano"
                     print("Escolha sua opção: ")
                     print()
                     print("inicio: voltar para o saguao")
@@ -129,10 +140,25 @@ def main():
                         print(cenarios[escolha]["descricao"])
                         print()
                         escolha = input("Lutar ou fugir? ")
-                            
+                        if escolha == "fugir":
+                            return main()
+                        elif escolha == "lutar":
+                            if "espada" in inventario:
+                                print("voce derrotou o monstro")
+                                game_over = True
                         
+                            
+                            else:
+                                print("voce foi derrotado")
+                                game_over = True
+                                
+                        else: print("errado")
+                        game_over = True
+                            
+                            
+                            
                     else:
-                        print("Sua indecisão foi sua ruína!")
+                        print("errado")
                         game_over = True
                         
                           
